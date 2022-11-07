@@ -1,0 +1,25 @@
+.control-container {
+  display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    padding: 0;
+    margin: 0;
+}
+#action-btn {
+  margin-top: 10px;
+  
+}
+#action-btn .css-tzssek-MuiSvgIcon-root {
+  font-size: clamp(3rem , 3.5vw + 1rem ,4.5em)
+}
+
+@media screen and (max-width: 450px) {
+  #action-btn {
+      margin-top: 0;
+      padding: 0 5px;
+  
+    }
+}

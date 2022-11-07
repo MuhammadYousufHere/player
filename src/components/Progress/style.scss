@@ -1,0 +1,10 @@
+.progress-bar {
+  .MuiSlider-root {
+    height: 12px !important;
+
+    .MuiSlider-thumb {
+      width: 22px !important;
+      height: 22px !important;
+    }
+  }
+}

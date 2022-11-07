@@ -1,0 +1,34 @@
+.MuiSlider-root {
+  height: 12px !important;
+  .MuiSlider-thumb {
+    width: 22px !important;
+    height: 22px !important;
+  }
+}
+@media screen and (max-width: 450px) {
+  .MuiSlider-root {
+    height: 8px !important;
+    padding: 10px 0 !important;
+    .MuiSlider-thumb {
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+}
+
+.MuiBox-root {
+  .MuiSlider-root {
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .css-i4bv87-MuiSvgIcon-root {
+    width: 17px !important;
+    height: 17px !important;
+  }
+}
+.MuiGrid-item {
+  padding: 0px !important;
+}

@@ -1,0 +1,33 @@
+.volume-control {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  padding: 0;
+  margin: 0;
+  .children > * {
+    font-size: 2.1rem;
+  }
+  .volume-bar {
+    width: "90px" !important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .volume-control {
+    .children > * {
+      font-size: 1.5rem;
+    }
+    .MuiSlider-root {
+      height: 4px !important;
+      width: 30px;
+
+      .MuiSlider-thumb {
+        width: 10px !important;
+        height: 10px !important;
+      }
+    }
+  }
+}
