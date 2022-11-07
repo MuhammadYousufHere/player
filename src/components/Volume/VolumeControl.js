@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.scss";
 import { Slider, IconButton, Box } from "@mui/material";
-
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 
 export default function VolumeControl(props) {
@@ -16,19 +15,22 @@ export default function VolumeControl(props) {
           padding: 0,
           margin: 0,
         }}
-        onMouseOver={() => setShowVol(true)}
+
+
       >
         <VolumeUpIcon />
       </IconButton>
-      {showVol && (
-        <Slider
-          size="small"
-          sx={{
-            width: "90px",
-          }}
-          className="volume-bar"
-        />
-      )}
-    </Box>
+      {
+        showVol && (
+          <Slider
+            size="small"
+            sx={{
+              width: "90px",
+            }}
+            className="volume-bar"
+          />
+        )
+      }
+    </Box >
   );
 }

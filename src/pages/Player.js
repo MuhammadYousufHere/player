@@ -11,6 +11,7 @@ import Controls from "../components/Control/Controls";
 import Skip from "../components/Skip/Skip";
 
 const Player = (props) => {
+
     //   const { duration, curTime, onTimeUpdate } = props;
 
     //   const curPercentage = (curTime / duration) * 100;
@@ -45,41 +46,62 @@ const Player = (props) => {
     //     });
     //   }
     return (
-        <Container component="section" maxWidth="xl" sx={{}}>
-            <Grid
-                container
-                spacing={2}
-                sx={{
-                    height: "100vh",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <Grid item xs={2}>
-                    <Controls />
-                </Grid>
-                <Grid item xs={10}>
+        <Container component="div" maxWidth="xl" sx={{
+            display: "flex",
+            wrap: "wrap",
+            height: '100vh',
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+
+        }}>
+
+            <Box xs={2}>
+                <Controls />
+            </Box>
+            <Box sx={{
+                display: "flex",
+                wrap: "wrap",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+
+            }}>
+                <Box
+                    maxWidth="xs"
+                    sx={{
+                        display: "flex",
+                        wrap: "wrap",
+
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100% !important",
+
+                    }}
+                >
+                    <Progress />
+                </Box>
+                <Box
+                    maxWidth="xs"
+                    sx={{
+                        display: "flex",
+                        wrap: "wrap",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        height: "0px",
+                        padding: "0.6rem 0",
+                        gap: "1rem",
+                        width: '100%'
+                    }}
+                >
+                    <Playback />
                     <Box
-                        maxWidth="xs"
                         sx={{
                             display: "flex",
+                            flexDirection: "row",
                             wrap: "wrap",
 
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: "100%",
-                            "& > .children": {
-                                mx: 1,
-                            },
-                        }}
-                    >
-                        <Progress />
-                    </Box>
-                    <Box
-                        maxWidth="xs"
-                        sx={{
-                            display: "flex",
-                            wrap: "wrap",
                             justifyContent: "space-between",
                             alignItems: "center",
                             height: "0px",
@@ -87,27 +109,13 @@ const Player = (props) => {
                             gap: "1rem",
                         }}
                     >
-                        <Playback />
-                        <Box
-                            sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                wrap: "wrap",
-
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                height: "0px",
-                                padding: "0.6rem 0",
-                                gap: "1rem",
-                            }}
-                        >
-                            <Skip />
-                            <VolumeControl />
-                            <TimeStamp />
-                        </Box>
+                        <Skip />
+                        <VolumeControl />
+                        <TimeStamp />
                     </Box>
-                </Grid>
-            </Grid>
+                </Box>
+            </Box>
+
         </Container>
     );
 };

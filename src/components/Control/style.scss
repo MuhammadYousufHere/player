@@ -1,12 +1,12 @@
 .control-container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   flex-wrap: nowrap;
-  padding: 0;
   margin: 0;
+  padding: 0 14px 0 0;
 }
 #action-btn {
   margin-top: 10px;
@@ -14,9 +14,6 @@
     font-size: 5rem;
   }
 }
-// #action-btn .css-tzssek-MuiSvgIcon-root {
-//   font-size: calc(2vw + 2.7rem) !important;
-// }
 
 @media screen and (max-width: 450px) {
   #action-btn {
