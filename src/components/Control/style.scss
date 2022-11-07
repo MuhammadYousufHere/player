@@ -10,14 +10,20 @@
 }
 #action-btn {
   margin-top: 10px;
+  svg {
+    font-size: 5rem;
+  }
 }
-#action-btn .css-tzssek-MuiSvgIcon-root {
-  font-size: calc(2vw + 2.7rem) !important;
-}
+// #action-btn .css-tzssek-MuiSvgIcon-root {
+//   font-size: calc(2vw + 2.7rem) !important;
+// }
 
 @media screen and (max-width: 450px) {
   #action-btn {
     margin-top: 0;
     padding: 0 5px;
+    svg {
+      font-size: 3.5rem;
+    }
   }
 }
