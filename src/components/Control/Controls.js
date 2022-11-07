@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./style.scss";
 import IconButton from "@mui/material/IconButton";
 
 import { PlayCircle, PauseCircle } from "@mui/icons-material";
