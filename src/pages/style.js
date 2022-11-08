@@ -9,6 +9,7 @@ const common = {
 }
 const playerContainer = {
     height: '100vh',
+    gap: '0.2rem'
 }
 const wrapper = {
     flexDirection: "column",
@@ -17,7 +18,7 @@ const wrapper = {
 const common_2 = {
     display: "flex",
     wrap: "wrap",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     alignItems: "center",
     height: "0px",
     padding: "0.6rem 0",

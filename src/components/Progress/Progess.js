@@ -9,6 +9,7 @@ const Progress = ({ value, max, onChange, onMouseUp, onKeyUp }) => {
       className="children"
       aria-labelledby="continuous-slider"
       value={value}
+      defaultValue={0}
       min={1}
       max={max}
       onChange={onChange}
