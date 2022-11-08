@@ -1,11 +1,9 @@
 import React from "react";
 import { Slider, IconButton, Box } from "@mui/material";
-import styled from '@emotion/styled'
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import "./style.scss";
-const volBar = styled`
-`
+
 export default function VolumeControl({ value, onChange, mute, onMute }) {
 
   return (
