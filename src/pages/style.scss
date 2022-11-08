@@ -1,5 +1,7 @@
 @media screen and (max-width: 450px) {
   .action-box {
     width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 }
