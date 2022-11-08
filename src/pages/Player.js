@@ -1,117 +1,113 @@
-import React from "react";
-// import moment from "moment";
-// import momentDurationFormatSetup from "moment-duration-format";
+import React, { useState, useRef } from "react";
+import ReactPlayer from 'react-player'
 import { Box, Container } from "@mui/system";
-import { Grid } from "@mui/material";
 import Playback from "../components/Playback/Playback";
 import Progress from "../components/Progress/Progess";
 import TimeStamp from "../components/TimeStamp/TimeStamp";
 import VolumeControl from "../components/Volume/VolumeControl";
 import Controls from "../components/Control/Controls";
 import Skip from "../components/Skip/Skip";
+import { styles } from './style'
+import './style.scss'
+const Player = ({ tracks }) => {
 
-const Player = (props) => {
+    const [trackIndex] = useState(0);
+    const [vol, setVol] = useState(0.1);
+    const [isMute, setIsMute] = React.useState(true);
 
-    //   const { duration, curTime, onTimeUpdate } = props;
+    const [seek, setSeek] = useState(0);
+    const [playbackRate, setPlaybackRate] = useState(1)
+    const [isPlaying, setIsPlaying] = useState(false);
+    const { audioSrc } = tracks[trackIndex]
+    const playerRef = useRef(null)
+    const [duration, setDuration] = useState(0);
+    const [progessObj, setProgressObj] = useState({});
 
-    //   const curPercentage = (curTime / duration) * 100;
 
-    //   function formatDuration(duration) {
-    //     return moment
-    //       .duration(duration, "seconds")
-    //       .format("mm:ss", { trim: false });
-    //   }
+    const onForwardSeekHadler = () => {
+        setSeek(playerRef.current.seekTo(parseFloat(progessObj?.playedSeconds + 30)))
+    }
+    const onBackSeekHandler = () => {
+        setSeek(playerRef.current.seekTo(parseFloat(progessObj?.playedSeconds - 10)))
 
-    //   function calcClickedTime(e) {
-    //     const clickPositionInPage = e.pageX;
-    //     const bar = document.querySelector(".bar__progress");
-    //     const barStart = bar.getBoundingClientRect().left + window.scrollX;
-    //     const barWidth = bar.offsetWidth;
-    //     const clickPositionInBar = clickPositionInPage - barStart;
-    //     const timePerPixel = duration / barWidth;
-    //     return timePerPixel * clickPositionInBar;
-    //   }
-
-    //   function handleTimeDrag(e) {
-    //     onTimeUpdate(calcClickedTime(e));
-
-    //     const updateTimeOnMove = (eMove) => {
-    //       onTimeUpdate(calcClickedTime(eMove));
-    //     };
-
-    //     document.addEventListener("mousemove", updateTimeOnMove);
-
-    //     document.addEventListener("mouseup", () => {
-    //       document.removeEventListener("mousemove", updateTimeOnMove);
-    //     });
-    //   }
+    }
+    const onSlowHadler = () => {
+        if (playbackRate !== 0.25) {
+            setPlaybackRate(playbackRate - 0.25)
+        }
+    }
+    const onFastHandler = () => {
+        if (playbackRate !== 2) {
+            setPlaybackRate(playbackRate + 0.25)
+        }
+    }
+    const onMuteHandler = () => {
+        setIsMute(!isMute)
+        setVol(0)
+    }
     return (
-        <Container component="div" maxWidth="xl" sx={{
-            display: "flex",
-            wrap: "wrap",
-            height: '100vh',
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
+        <Container component="div" maxWidth="xl" sx={[styles.playerContainer, styles.common]}>
 
-        }}>
-
-            <Box xs={2}>
-                <Controls />
+            <Box>
+                <Box sx={{ visibility: 'hidden', position: 'absolute' }}>
+                    <ReactPlayer
+                        ref={playerRef}
+                        width="100%"
+                        height="auto"
+                        pip
+                        progressInterval={500}
+                        volume={vol}
+                        controls
+                        muted={isMute}
+                        playbackRate={playbackRate}
+                        playing={isPlaying}
+                        config={{ file: { forceHLS: true } }}
+                        url={audioSrc}
+                        onDuration={(d) => setDuration(d)}
+                        onProgress={(o) => setProgressObj(o)}
+                        onReady={(player) => player.seekTo(seek, 'seconds')}
+                    />
+                </Box>
+                <Controls onPlayPause={() => setIsPlaying(!isPlaying)} isPlaying={isPlaying} />
             </Box>
-            <Box sx={{
-                display: "flex",
-                wrap: "wrap",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-
-            }}>
+            <Box sx={[styles.wrapper, styles.common]}>
                 <Box
                     maxWidth="xs"
-                    sx={{
-                        display: "flex",
-                        wrap: "wrap",
-
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "100% !important",
-
-                    }}
+                    sx={styles.common}
                 >
-                    <Progress />
+                    <Progress
+                        max={Math.ceil(duration)}
+                        defaultValue={0}
+                        value={isNaN(Math.ceil(progessObj.playedSeconds)) ? 0 : progessObj.playedSeconds}
+                        onChange={(v) => playerRef.current.seekTo(parseFloat(v.target.value), "seconds")}
+                    // value={trackProgress}
+                    // onChange={(e) => onScrub(e.target.value)}
+                    // onMouseUp={onScrubEnd}
+                    // onKeyUp={onScrubEnd}
+
+                    />
                 </Box>
                 <Box
                     maxWidth="xs"
-                    sx={{
-                        display: "flex",
-                        wrap: "wrap",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        height: "0px",
-                        padding: "0.6rem 0",
-                        gap: "1rem",
-                        width: '100%'
-                    }}
+                    sx={[styles.common_2, styles.left]}
                 >
-                    <Playback />
+                    <Playback
+                        onSlow={onSlowHadler}
+                        onFast={onFastHandler}
+                        view={playbackRate} />
                     <Box
-                        sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            wrap: "wrap",
-
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            height: "0px",
-                            padding: "0.6rem 0",
-                            gap: "1rem",
-                        }}
+                        sx={styles.common_2}
+                        className='action-box'
                     >
-                        <Skip />
-                        <VolumeControl />
-                        <TimeStamp />
+                        <Skip onBackSeek={onBackSeekHandler} onForwardSeek={onForwardSeekHadler} />
+                        <VolumeControl
+                            value={vol}
+                            onChange={(e) => setVol(e.target.value)}
+                            mute={isMute}
+                            onMute={onMuteHandler} />
+                        <TimeStamp
+                            currentTime={progessObj?.playedSeconds}
+                            duration={duration} />
                     </Box>
                 </Box>
             </Box>

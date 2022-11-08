@@ -12,11 +12,19 @@
   }
   .volume-bar {
     width: "90px" !important;
+    display: none;
+    transition: 0.3s all;
+  }
+  &:hover {
+    .volume-bar {
+      display: block;
+    }
   }
 }
 
 @media screen and (max-width: 450px) {
   .volume-control {
+    gap: 0.2rem;
     .children > * {
       font-size: 1.5rem;
     }

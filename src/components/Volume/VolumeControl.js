@@ -1,10 +1,12 @@
 import React from "react";
-import "./style.scss";
 import { Slider, IconButton, Box } from "@mui/material";
+import styled from '@emotion/styled'
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-
-export default function VolumeControl(props) {
-  const [showVol, setShowVol] = React.useState(false);
+import VolumeOffIcon from '@mui/icons-material/VolumeOff';
+import "./style.scss";
+const volBar = styled`
+`
+export default function VolumeControl({ value, onChange, mute, onMute }) {
 
   return (
     <Box className="volume-control">
@@ -15,22 +17,27 @@ export default function VolumeControl(props) {
           padding: 0,
           margin: 0,
         }}
-
+        onClick={onMute}
 
       >
-        <VolumeUpIcon />
+        {mute ? <VolumeOffIcon /> : <VolumeUpIcon />}
       </IconButton>
-      {
-        showVol && (
-          <Slider
-            size="small"
-            sx={{
-              width: "90px",
-            }}
-            className="volume-bar"
-          />
-        )
-      }
+
+
+      <Slider
+        value={value}
+        step={0.01}
+        onChange={onChange}
+        size="small"
+        min={0}
+        max={1}
+        sx={{
+          width: "90px",
+        }}
+        className="volume-bar"
+      />
+
+
     </Box >
   );
 }

@@ -6,23 +6,18 @@ import { Replay10, Forward30 } from "@mui/icons-material";
 
 import { Box } from "@mui/material";
 
-export default function Controls(props) {
-  const sx = props.sx;
-  // const [isPlaying, setIsPlaying] = React.useState(false);
-  // const onSkipBack = () => {};
-  // const onSkipForward = () => {};
+export default function Seek({ onBackSeek, onForwardSeek }) {
+
 
   return (
     <Box
-      sx={{
-        ...sx,
-      }}
+
       className="skip-play"
     >
-      <IconButton onClick={() => { }} size="large" sx={{ padding: "0px" }}>
+      <IconButton onClick={onBackSeek} size="large" sx={{ padding: "0px" }}>
         <Replay10 fontSize="large" />
       </IconButton>
-      <IconButton onClick={() => { }} size="large" sx={{ padding: "0px" }}>
+      <IconButton onClick={onForwardSeek} size="large" sx={{ padding: "0px" }}>
         <Forward30 fontSize="large" />
       </IconButton>
     </Box>

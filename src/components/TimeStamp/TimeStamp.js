@@ -3,15 +3,14 @@ import { Box } from "@mui/system";
 import React from "react";
 import "./style.scss";
 import secondsToString from "../../utils/secondsToString";
-const TimeStamp = () => {
-  const currentTime = 744;
-  const timeLeft = 174;
+const TimeStamp = ({ currentTime = 1, duration = 100 }) => {
+
   return (
     <Box className="time-container">
       <Typography className="children">
         {secondsToString(currentTime)}
       </Typography>
-      /<Typography className="children">{secondsToString(timeLeft)}</Typography>
+      /<Typography className="children">{secondsToString(duration)}</Typography>
     </Box>
   );
 };

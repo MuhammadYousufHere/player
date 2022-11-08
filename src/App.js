@@ -1,12 +1,13 @@
 import React from "react";
-
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useMediaQuery } from "@mui/material";
 import makeTheme from "./makeTheme";
+import Player from "./pages/Player";
 import "./App.scss";
 
-import Player from "./pages/Player";
+import { tracks } from "./tracks";
+
 function App() {
   const [mode] = React.useState("system");
   const isDark = useMediaQuery("(prefers-color-scheme: dark)");
@@ -19,7 +20,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Player />
+      <Player tracks={tracks} />
     </ThemeProvider>
   );
 }
