@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ReactPlayer from 'react-player'
 import { Box, Container } from "@mui/system";
 import Playback from "../components/Playback/Playback";
@@ -10,7 +10,7 @@ import Skip from "../components/Skip/Skip";
 import { styles } from './style'
 import './style.scss'
 const Player = ({ tracks }) => {
-    const [audio, setAudio] = useState('')
+    // const [audio, setAudio] = useState('')
     const [trackIndex] = useState(0);
     const [vol, setVol] = useState(0.5);
     const [isMute, setIsMute] = React.useState(true);
@@ -34,7 +34,7 @@ const Player = ({ tracks }) => {
     //         }
     //     })()
     // }, [])
-    console.log(audio)
+    // console.log(audio)
     const onForwardSeekHadler = () => {
         setSeek(playerRef.current.seekTo(parseFloat(progessObj?.playedSeconds + 30)))
     }
